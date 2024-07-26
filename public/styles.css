@@ -1,0 +1,77 @@
+/* styles.css */
+
+/* Thiết lập font và padding cho phần form */
+body {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    width: 100vw;
+    height: 100vh;
+}
+.input-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Canh lề cho các label và input */
+label, input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+/* Canh lề cho nút submit */
+button {
+    margin-top: 10px;
+}
+
+/* Tùy chỉnh kiểu dáng cho nút submit */
+button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+/* Hiệu ứng khi rê chuột vào nút submit */
+button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Thiết lập style cho input và label */
+input[type="text"], input[type="checkbox"], label {
+    margin-bottom: 10px;
+}
+input[type="checkbox"] {
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
+}
+input[type="checkbox"]:hover {
+    cursor: pointer;
+}
+input[type="text"] {
+    padding: 5px;
+    width: 100%;
+    border-radius: 5px;
+    height: 20px;
+    border: 1px solid #ccc;
+}
+input[type="text"]:focus {
+    border-color: #333;
+}
+input[name="token"]{
+    height: 100px;
+    display: flex;
+    text-align: start;
+    align-items: start;
+    justify-content: start;
+}
+/* Thiết lập style cho form */
+form {
+    max-width: 400px;
+    margin: auto;
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+}

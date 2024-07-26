@@ -1,31 +1,48 @@
+const fs = require('fs');
+const path = require('path');
+const moment = require('moment-timezone');
+const cron = require('node-cron');
 const Account = require('../model/model');
 const mongoose = require('mongoose');
+
+// Đường dẫn tới tệp log
+const logFilePath = path.join(__dirname, '../log/log.txt');
+
+// Hàm ghi log vào tệp
+const logToFile = (message) => {
+    const vietnamTime = moment().tz('Asia/Ho_Chi_Minh').format('YYYY-MM-DD HH:mm:ss');
+    fs.appendFile(logFilePath, `${vietnamTime} - ${message}\n`, (err) => {
+        if (err) {
+            console.error('Failed to write to log file:', err);
+        }
+    });
+};
 
 // Biến để kiểm tra đã chạy lần đầu hay chưa
 let isFirstRun = true;
 
 // Hàm chính để thực hiện đăng nhập tự động cho tất cả các tài khoản
 async function refreshAccountsAndAutoSignIn() {
-    console.log('Thực hiện auto sign-in cho tất cả tài khoản...');
+    logToFile('Thực hiện auto sign-in cho tất cả tài khoản...');
     try {
         const accounts = await Account.find(); // Gọi hàm lấy tất cả tài khoản từ controller
-        console.log("lay danh sach tai khoan thanh cong");
-        console.log(`Danh sách tài khoản đã lấy: ${accounts}`);
+        logToFile("Lấy danh sách tài khoản thành công");
+        logToFile(`Danh sách tài khoản đã lấy: ${JSON.stringify(accounts)}`);
         for (const account of accounts) {
             const hoyolabResponse = await autoSignFunction(account);
-            console.log(`${account.nickname} : ${hoyolabResponse} `);
-            console.log("--------------------------------------------------");
+            logToFile(`${account.nickname} : ${hoyolabResponse}`);
+            logToFile("--------------------------------------------------");
             // Đặt độ trễ ngẫu nhiên giữa các yêu cầu để tránh hành vi quá nhanh
             await sleep(Math.random() * 1000 + 2000);
         }
     } catch (error) {
-        console.error(`Lỗi khi thực hiện auto sign-in: ${error.message}`);
+        logToFile(`Lỗi khi thực hiện auto sign-in: ${error.message}`);
     }
 }
 
 // Hàm thực hiện đăng nhập tự động cho từng tài khoản
 async function autoSignFunction(account) {
-    console.log(`Thực hiện auto sign-in cho tài khoản ${account.nickname}...`);
+    logToFile(`Thực hiện auto sign-in cho tài khoản ${account.nickname}...`);
     const signUrls = {
         gi: "https://sg-hk4e-api.hoyolab.com/event/sol/sign?lang=vi-vn&act_id=e202102251931481",
         hsr: "https://sg-public-api.hoyolab.com/event/luna/os/sign?lang=vi-vn&act_id=e202303301540311",
@@ -48,7 +65,7 @@ async function autoSignFunction(account) {
 
     for (const [game, url] of Object.entries(signUrls)) {
         if (account[game]) {
-            console.log(`Đang thực hiện auto sign-in cho ${game}...`);
+            logToFile(`Đang thực hiện auto sign-in cho ${game}...`);
             try {
                 const res = await fetch(url, {
                     method: 'POST',
@@ -61,7 +78,7 @@ async function autoSignFunction(account) {
             }
         }
     }
-    console.log(`Kết quả auto sign-in cho tài khoản ${account.nickname}: ${response}`);
+    logToFile(`Kết quả auto sign-in cho tài khoản ${account.nickname}: ${response}`);
     return response;
 }
 
@@ -77,20 +94,30 @@ async function startAndSchedule() {
             await refreshAccountsAndAutoSignIn(); // Chạy lần đầu khi khởi động server
             isFirstRun = false;
         }
-        console.log('startAndSchedule is done');
+        logToFile('startAndSchedule is done');
     } catch (error) {
-        console.error(`Lỗi khi khởi động lần đầu và lên lịch: ${error.message}`);
+        logToFile(`Lỗi khi khởi động lần đầu và lên lịch: ${error.message}`);
     }
 }
+
+// Thiết lập lịch trình để chạy vào lúc 4h sáng hàng ngày
+cron.schedule('0 4 * * *', async () => {
+    logToFile('Thực hiện nhiệm vụ định kỳ lúc 4h sáng...');
+    try {
+        await refreshAccountsAndAutoSignIn();
+    } catch (error) {
+        logToFile(`Lỗi khi thực hiện nhiệm vụ định kỳ: ${error.message}`);
+    }
+});
 
 // Khởi động server sau khi kết nối DB thành công
 async function startServer() {
     try {
         await startAndSchedule(); // Chạy hàm startAndSchedule sau khi server đã khởi động
     } catch (error) {
-        console.error(`Lỗi khi khởi động server: ${error.message}`);
+        logToFile(`Lỗi khi khởi động server: ${error.message}`);
     }
-    console.log('startServer is done!');
+    logToFile('startServer is done!');
 }
 
 module.exports = startServer;

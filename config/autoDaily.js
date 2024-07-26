@@ -33,7 +33,7 @@ async function refreshAccountsAndAutoSignIn() {
             logToFile(`${account.nickname} : ${hoyolabResponse}`);
             logToFile("--------------------------------------------------");
             // Đặt độ trễ ngẫu nhiên giữa các yêu cầu để tránh hành vi quá nhanh
-            await sleep(Math.random() * 1000 + 2000);
+            await sleep(Math.random() * 240000 + 60000); // Độ trễ từ 1 đến 5 phút
         }
     } catch (error) {
         logToFile(`Lỗi khi thực hiện auto sign-in: ${error.message}`);

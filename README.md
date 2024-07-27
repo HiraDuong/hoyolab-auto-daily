@@ -130,7 +130,11 @@ PORT=5000
 
   
 
+<<<<<<< Updated upstream
 - ![Add Account](public\usage\home.png)
+=======
+- ![Add Account](public/usage/home.png)
+>>>>>>> Stashed changes
 
   
 
@@ -142,11 +146,19 @@ PORT=5000
 
   
 
+<<<<<<< Updated upstream
 - ![List Game](public\usage\listgame.png)
 
   
 
 - ![Add Game](public\usage\addgame.png)
+=======
+- ![List Game](public/usage/listgame.png)
+
+  
+
+- ![Add Game](public/usage/addgame.png)
+>>>>>>> Stashed changes
 
   
 
@@ -158,7 +170,11 @@ PORT=5000
 
   
 
+<<<<<<< Updated upstream
 - ![List Game](public\usage\account.png)
+=======
+- ![List Game](public/usage/account.png)
+>>>>>>> Stashed changes
 
   
 
@@ -168,11 +184,19 @@ PORT=5000
 
 - Schedule check-in time
 
+<<<<<<< Updated upstream
 - ![List Game](public\usage\schedule.png)
 
 - Schedule delete the log time
 
 - ![List Game](public\usage\delete_log_schedule.png)
+=======
+- ![List Game](public/usage/schedule.png)
+
+- Schedule delete the log time
+
+- ![List Game](public/usage/delete_log_schedule.png)
+>>>>>>> Stashed changes
 
 - Get your MongoDB uri here [Get Started with Atlas - MongoDB Atlas](https://www.mongodb.com/docs/atlas/getting-started/)
 

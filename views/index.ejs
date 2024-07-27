@@ -11,20 +11,30 @@
     
 </head>
 <body>
+    <div id="loader-container">
+    <span class="loader"></span>
+    </div>
+    <nav>
+        <ul>
+            <li id="home"><a href="/">HOME</a></li>
+            <li id="doc"><a href="/doc">Docs</a></li>
+
+            <li id="nav-account"><a href="/account">Account</a></li>
+            <li id ='nav-game'><a href="/game">GAME</a></li>
+        </ul>
+    </nav>
+    <div class="body-content">
     <form id="my-form" >
-        <div class="input-container">
+        <h2>Add your account here!</h2>
+        <div class="input-container" >
             <input type = "text" name ="nickname" placeholder="nickname" id="nickname">
             <textarea name="token" rows="4" cols="50" placeholder="token" id="token"></textarea>
         </div>
-        <div class="input-container">
-        <label>Honkai Impact 3</label>
-        <input type = "checkbox" name="hi3" id="hi3">
-        <label >Genshin Impact</label>
-        <input type = "checkbox" name="gi" id="gi">
-        <label>Honkai Star Rail</label>
-        <input type = "checkbox" name="hsr" id="hsr">
-        <button type="submit">Add Account</button>
+        <div class="input-container" id="check-box-list">
     </div>
+    <button type="submit">Add Account</button>
+    <button type="button" id = 'get-cookie-btn'>Auto Get Token</button>
     </form>
+    </div>
 </body>
 </html>

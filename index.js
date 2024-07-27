@@ -22,7 +22,7 @@ app.use('/api', require('./routes/routes'))
 const startServer = require('./config/autoDaily')
 const tasks = async () => {
         await connectDB()
-        // await startServer()
+        await startServer()
 }
 tasks()
 

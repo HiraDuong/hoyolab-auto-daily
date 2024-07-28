@@ -2,76 +2,195 @@
 
 /* Thiết lập font và padding cho phần form */
 body {
-    font-family: Arial, sans-serif;
-    padding: 20px;
-    width: 100vw;
-    height: 100vh;
-}
-.input-container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        width: 100vw;
+        height: 100vh;
 }
 
 /* Canh lề cho các label và input */
-label, input[type="checkbox"] {
-    margin-right: 10px;
+label,
+input[type='checkbox'] {
+        margin-right: 10px;
+        width: 60px;
+        display: inline-block;
+}
+
+#loader-container {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        /* display: flex; */
+        align-items: center;
+        justify-content: center;
+}
+.loader {
+        width: 48px;
+        height: 48px;
+        border: 5px solid #fff;
+        border-bottom-color: #ff3d00;
+        border-radius: 50%;
+        display: inline-block;
+        box-sizing: border-box;
+        animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+        0% {
+                transform: rotate(0deg);
+        }
+        100% {
+                transform: rotate(360deg);
+        }
 }
 
 /* Canh lề cho nút submit */
 button {
-    margin-top: 10px;
+        margin-top: 10px;
+}
+
+.list-group-item {
+        display: inline-flex;
+        flex-direction: column;
+        border: 1px dotted #6106eb;
+}
+
+label {
+        color: red;
+        font-weight: 600;
 }
 
 /* Tùy chỉnh kiểu dáng cho nút submit */
-button[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
+button[type='submit'] {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
 }
 
 /* Hiệu ứng khi rê chuột vào nút submit */
-button[type="submit"]:hover {
-    background-color: #45a049;
+button[type='submit']:hover {
+        background-color: #45a069;
 }
 
+button[type='button'] {
+        background-color: #3685f4;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+}
+button[type='button']:hover {
+        background-color: #0b34da;
+}
 /* Thiết lập style cho input và label */
-input[type="text"], input[type="checkbox"], label {
-    margin-bottom: 10px;
+input[type='text'],
+input[type='checkbox'],
+label {
+        margin-bottom: 10px;
 }
-input[type="checkbox"] {
-    margin-left: 10px;
-    width: 20px;
-    height: 20px;
+input[type='checkbox'] {
+        margin-left: 10px;
+        width: 20px;
+        height: 20px;
 }
-input[type="checkbox"]:hover {
-    cursor: pointer;
+input[type='checkbox']:hover {
+        cursor: pointer;
 }
-input[type="text"] {
-    padding: 5px;
-    width: 100%;
-    border-radius: 5px;
-    height: 20px;
-    border: 1px solid #ccc;
+input[type='text'] {
+        padding: 5px;
+        width: 100%;
+        border-radius: 5px;
+        height: 20px;
+        border: 1px solid #ccc;
 }
-input[type="text"]:focus {
-    border-color: #333;
+input[type='text']:focus {
+        border-color: #333;
 }
-input[name="token"]{
-    height: 100px;
-    display: flex;
-    text-align: start;
-    align-items: start;
-    justify-content: start;
+input[name='token'] {
+        height: 100px;
+        display: flex;
+        text-align: start;
+        align-items: start;
+        justify-content: start;
 }
+
+.body-content {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        flex-direction: column;
+}
+
 /* Thiết lập style cho form */
 form {
-    max-width: 400px;
-    margin: auto;
-    border: 1px solid #ccc;
-    padding: 20px;
-    border-radius: 5px;
-    background-color: #f2f2f2;
+        max-width: 400px;
+        margin: auto;
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+}
+
+nav {
+        background-color: #333;
+        color: white;
+        height: 40px;
+        z-index: 10;
+        text-align: center;
+        position: fixed;
+        top: 0;
+        width: 100vw;
+        left: 0;
+}
+
+ul {
+        list-style-type: none;
+        padding: 0;
+        display: grid;
+        margin: 0;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: 1fr;
+        gap: 0px 0px;
+        height: 100%;
+        grid-template-areas: 'home doc account game';
+}
+ul > li {
+        border-right: #45a049 2px solid;
+        height: 100%;
+}
+ul:last-child {
+        border-right: none;
+}
+a {
+        color: white;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+}
+
+#nav-account {
+        grid-area: account;
+}
+#nav-game {
+        grid-area: game;
+}
+#home {
+        grid-area: home;
+}
+#doc {
+        grid-area: doc;
 }

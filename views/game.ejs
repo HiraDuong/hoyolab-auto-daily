@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto daily by Hira</title>
+    <link rel="stylesheet" type="text/css" href="../styles.css"> <!-- Liên kết đến tệp CSS -->
+    <link rel="stylesheet" type="text/css" href="game.css"> <!-- Liên kết đến tệp CSS -->
+</head>
+<body>
+    <div id="loader-container">
+        <span class="loader"></span>
+        </div>
+    <nav>
+        <ul>
+            <li id="home"><a href="/">HOME</a></li>
+            <li id="doc"><a href="/doc">Docs</a></li>
+            <li id="nav-account"><a href="/account">Account</a></li>
+            <li id="nav-game"><a href="/game">GAME</a></li>
+        </ul>
+    </nav>
+    <div class="body-content">
+        <button class="button" id="game-list-btn">List GAME</button>
+        <div class="table-container">
+            <table id="game-list-table">
+                <thead>
+                    <tr id="table-header">
+                        <!-- Dynamic table headers will be inserted here -->
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Dynamic table rows will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+        <h3>Or</h3>
+        <button class="button" id="game-add-btn">Add GAME</button>
+        <div class="form-container" id="game-add-form">
+            <form id="my-form" style="display: none;">
+                <h2>Add new game here!</h2>
+                <div class="input-container">
+                    <input type = "text" name ="game" placeholder="game" id="game">
+                    <textarea name="url" rows="4" cols="50" placeholder="url" id="url"></textarea>
+                </div>
+            <button id="submit" type="submit">Add Game</button>
+
+            </form>
+    </div>
+    <script src="game.js"></script> <!-- Liên kết đến tệp JS -->
+</body>
+</html>

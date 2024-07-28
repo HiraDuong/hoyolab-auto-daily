@@ -3,7 +3,7 @@ const dotenv = require('dotenv')
 dotenv.config()
 // URI kết nối tới MongoDB Atlas
 
-const uri = process.env.MONGODB_URI
+const uri = process.env.MONGO_URI
 // Các tham số kết nối
 const connectionParams = {
         useNewUrlParser: true,

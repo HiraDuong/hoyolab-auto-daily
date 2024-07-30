@@ -95,6 +95,10 @@ const defaultSignUrls = [
                 game: 'hi3',
                 url: 'https://sg-public-api.hoyolab.com/event/mani/sign?lang=vi-vn&act_id=e202110291205111',
         },
+        {
+                game: 'zzz',
+                url:  'https://sg-act-nap-api.hoyolab.com/event/luna/zzz/os/sign?lang=vi-vn&act_id=e202406031448091'
+        }
 ]
 
 const getSignUrls = async () => {

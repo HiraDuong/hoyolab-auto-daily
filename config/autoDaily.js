@@ -45,7 +45,6 @@ async function refreshAccountsAndAutoSignIn() {
             |                                            |
             ++++++++++++++++++++++++++++++++++++++++++++++\n`)
         logToFile('Thực hiện auto sign-in cho tất cả tài khoản...')
-
         try {
                 const accounts = await Account.find() // Gọi hàm lấy tất cả tài khoản từ controller
                 logToFile('Lấy danh sách tài khoản thành công')
@@ -65,6 +64,8 @@ async function refreshAccountsAndAutoSignIn() {
                 })
                 for (const account of accounts) {
                         await sleep(Math.random() * 240000 + 60000) // Độ trễ từ 1 đến 5 phút
+                        const hoyolabResponse = await autoSignFunction(account)
+                        logToFile(`${account.nickname} : ${hoyolabResponse}`)
                         logToFile(
                                 '--------------------------------------------------',
                         )
@@ -95,9 +96,9 @@ const defaultSignUrls = [
                 url: 'https://sg-public-api.hoyolab.com/event/mani/sign?lang=vi-vn&act_id=e202110291205111',
         },
         {
-                game: 'zzz',
-                url: 'https://sg-act-nap-api.hoyolab.com/event/luna/zzz/os/sign?lang=vi-vn&act_id=e202406031448091',
-        },
+                game : 'zzz',
+                url : 'https://sg-act-nap-api.hoyolab.com/event/luna/zzz/os/sign?lang=vi-vn&act_id=e202406031448091'
+        }
 ]
 
 const getSignUrls = async () => {
@@ -231,7 +232,7 @@ async function startServer() {
         } catch (error) {
                 logToFile(`Lỗi khi khởi động server: ${error.message}`)
         }
-        logToFile('Lên lịch chạy thành công')
+        logToFile('startServer is done!')
 }
 
 module.exports = startServer

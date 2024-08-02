@@ -88,6 +88,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 } catch (error) {
                         console.error('Error:', error)
                 }
+                loader.style.display = 'none'
         })
 
         getCookieBtn.addEventListener('click', async function () {

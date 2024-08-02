@@ -1,0 +1,72 @@
+/* Thiết lập kiểu cho phần tiêu đề */
+h1,
+h2 {
+        color: #333;
+        text-align: center;
+        font-family: Arial, sans-serif;
+}
+
+img {
+        max-width: 80vw;
+}
+
+/* Kiểu cho danh sách */
+ul,
+ol {
+        margin: 20px;
+        padding: 0;
+        list-style-position: inside;
+}
+
+/* Kiểu cho các liên kết */
+a {
+        color: #007bff;
+        text-decoration: none;
+}
+
+a:hover {
+        text-decoration: underline;
+}
+
+/* Kiểu cho đoạn văn */
+p {
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #555;
+        display: inline;
+}
+
+/* Kiểu cho phần mã nguồn */
+.sourceCode {
+        background-color: #f5f5f5;
+        border-radius: 4px;
+        padding: 10px;
+        margin: 20px 0;
+}
+
+.sourceCode code {
+        font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+        color: #d63384;
+}
+
+/* Kiểu cho hình ảnh và chú thích */
+figure {
+        margin: 20px 0;
+        text-align: center;
+}
+
+figcaption {
+        font-style: italic;
+        font-size: 14px;
+        color: #666;
+}
+
+/* Kiểu cho phần .env */
+.env {
+        background-color: #f9f9f9;
+        border-left: 4px solid #d63384;
+        padding: 10px;
+        font-family: Consolas, 'Courier New', monospace;
+        color: #333;
+}

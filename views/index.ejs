@@ -27,13 +27,14 @@
     <form id="my-form" >
         <h2>Add your account here!</h2>
         <div class="input-container" >
-            <input type = "text" name ="nickname" placeholder="nickname" id="nickname">
-            <textarea name="token" rows="4" cols="50" placeholder="token" id="token"></textarea>
+            <input type = "text" name ="nickname" required placeholder="nickname" id="nickname">
+            <textarea name="token" rows="4" required cols="50" placeholder="token" id="token"></textarea>
         </div>
         <div class="input-container" id="check-box-list">
     </div>
     <button type="submit">Add Account</button>
     <button type="button" id = 'get-cookie-btn'>Auto Get Token</button>
+    <button type="button" id = 'login-done-btn' style="display:none ;">Login Get Token Done</button>
     </form>
     </div>
 </body>

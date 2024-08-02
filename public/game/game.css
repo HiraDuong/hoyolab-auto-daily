@@ -22,6 +22,10 @@ nav ul li {
         cursor: pointer;
 }
 
+.button:hover {
+        background-color: #07ff94;
+}
+
 .table-container {
         width: 100%;
         overflow-x: auto; /* Để bảng cuộn ngang nếu quá rộng */
@@ -71,13 +75,17 @@ nav ul li {
 }
 
 .btn-update:hover {
-        background-color: #45a049; /* Màu xanh lá cây nhạt hơn khi hover */
+        background-color: #00fd0d; /* Màu xanh lá cây nhạt hơn khi hover */
 }
 
 .btn-delete:hover {
-        background-color: #e53935; /* Màu đỏ nhạt hơn khi hover */
+        background-color: #b50401; /* Màu đỏ nhạt hơn khi hover */
 }
 
 #game-add-btn {
         background-color: rgb(0, 115, 255);
+}
+
+#game-add-btn:hover {
+        background-color: rgb(17, 0, 255);
 }

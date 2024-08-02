@@ -3,8 +3,8 @@ const fs = require('fs')
 const path = require('path')
 const cors = require('cors')
 const connectDB = require('./config/mongoDB')
-const cron = require('node-cron')
-const PORT = process.env.PORT || 5000
+const puppeteer = require('puppeteer')
+const PORT = process.env.PORT || 2000
 
 // Đặt view engine là 'ejs'
 const app = express()
@@ -38,7 +38,59 @@ app.get('/game', (req, res) => {
 })
 
 app.get('/doc', (req, res) => {
-        res.sendFile(path.join(__dirname, 'docs/API_document.pdf'))
+        res.render('doc')
+})
+
+let browser
+let page
+
+app.get('/proxy', async (req, res) => {
+        try {
+                // Khởi tạo trình duyệt và trang mới
+                browser = await puppeteer.launch({ headless: false })
+                page = await browser.newPage()
+
+                // Điều hướng đến trang đăng nhập
+                await page.goto('https://www.hoyolab.com/home')
+
+                // Trả lời yêu cầu để thông báo rằng trình duyệt đã được mở
+                res.json({
+                        message: 'Browser opened. Please log in manually and then click the loginDoneBtn.',
+                })
+        } catch (error) {
+                console.error(error)
+                res.status(500).json({
+                        error: 'Có lỗi xảy ra khi mở trình duyệt',
+                })
+        }
+})
+
+app.get('/get-cookies', async (req, res) => {
+        try {
+                if (!page) {
+                        return res
+                                .status(400)
+                                .json({
+                                        error: 'Trình duyệt chưa được mở hoặc trang chưa được tải.',
+                                })
+                }
+
+                // Lấy cookie từ trang đã đăng nhập
+                const cookies = await page.cookies()
+
+                // Trả lại cookie cho client
+                res.json(cookies)
+
+                // Đóng trình duyệt
+                await browser.close()
+                browser = null
+                page = null
+        } catch (error) {
+                console.error(error)
+                res.status(500).json({
+                        error: 'Có lỗi xảy ra khi lấy cookie hoặc đóng trình duyệt',
+                })
+        }
 })
 
 // Ghi log vào tệp log.txt

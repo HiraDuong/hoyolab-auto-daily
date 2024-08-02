@@ -1,12 +1,13 @@
 const apiUrl = `${window.location.origin}/api/accounts`
 const gameApiUrl = `${window.location.origin}/api/game`
+const proxyUrl = `${window.location.origin}/proxy`
+const getCookiesUrl = `${window.location.origin}/get-cookies`
 
 const getGames = async () => {
         try {
-                const games = await fetch(`${gameApiUrl}/all`)
-                        .then((res) => res.json())
-                        .then((data) => data)
-                return games
+                const response = await fetch(`${gameApiUrl}/all`)
+                const data = await response.json()
+                return data
         } catch (error) {
                 console.error('Error:', error)
         }
@@ -14,21 +15,23 @@ const getGames = async () => {
 
 document.addEventListener('DOMContentLoaded', async function () {
         const loader = document.getElementById('loader-container')
-        const form = document.getElementById('my-form') // Sửa id form thành accountForm
+        const form = document.getElementById('my-form')
         const nicknameD = document.getElementById('nickname')
         const tokenD = document.getElementById('token')
         const check_box_list = document.getElementById('check-box-list')
         const getCookieBtn = document.getElementById('get-cookie-btn')
+        const loginDoneBtn = document.getElementById('login-done-btn')
+
         loader.style.display = 'flex'
         const games = await getGames()
 
         games.forEach((game) => {
-                console.log(game)
                 const listChild = document.createElement('div')
                 listChild.classList.add('list-group-item')
+
                 const label = document.createElement('label')
                 label.htmlFor = game.game
-                label.textContent = game.game + ':'
+                label.textContent = `${game.game}:`
                 listChild.appendChild(label)
 
                 const input = document.createElement('input')
@@ -40,6 +43,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
                 check_box_list.appendChild(listChild)
         })
+
         setTimeout(() => (loader.style.display = 'none'), 1000)
 
         form.addEventListener('submit', async function (e) {
@@ -61,7 +65,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                         token,
                         ...selectedGames, // Thêm các giá trị checkbox vào đối tượng account
                 }
-                cons
+
                 const apiEndpoint = `${apiUrl}`
 
                 try {
@@ -84,12 +88,48 @@ document.addEventListener('DOMContentLoaded', async function () {
                 } catch (error) {
                         console.error('Error:', error)
                 }
-                location.reload()
         })
 
-        getCookieBtn.addEventListener('click', function () {
-                alert(
-                        'Sorry this feature is not available yet\nPlease try again later',
-                )
+        getCookieBtn.addEventListener('click', async function () {
+                loginDoneBtn.style.display = 'block'
+                try {
+                        const response = await fetch(proxyUrl, {
+                                method: 'GET',
+                                credentials: 'include', // Đảm bảo rằng các cookie sẽ được gửi kèm theo yêu cầu
+                        })
+                        console.log('browser open: ' + JSON.stringify(response))
+                } catch (error) {
+                        console.error('Có lỗi xảy ra khi lấy dữ liệu:', error)
+                }
+        })
+        loginDoneBtn.addEventListener('click', async function () {
+                loader.style.display = 'flex'
+
+                try {
+                        const response = await fetch(getCookiesUrl, {
+                                method: 'GET',
+                                credentials: 'include',
+                        })
+
+                        const cookies = await response.json()
+
+                        // Chuyển đổi danh sách cookie thành chuỗi
+                        const cookieString = cookies
+                                .map(
+                                        (cookie) =>
+                                                `${cookie.name}=${cookie.value}`,
+                                )
+                                .join('; ')
+                        tokenD.value = cookieString
+                        console.log('cookie string: ' + cookieString)
+                        cookies.forEach((cookie) => {
+                                console.log(
+                                        `Name: ${cookie.name}, Value: ${cookie.value}`,
+                                )
+                        })
+                        loader.style.display = 'none'
+                } catch (error) {
+                        console.error('Error:', error)
+                }
         })
 })

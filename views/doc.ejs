@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hoyolab AutoDaily</title>
+    <link rel="stylesheet" href="doc.css">
+</head>
+<body>
+    <header>
+        <h1 id="hoyolab-autodaily">Hoyolab AutoDaily</h1>
+        <p class="intro">A project to help auto check-in on Hoyolab for games like Honkai Impact 3, Genshin Impact, Honkai Star Rail, and Zenless Zone Zero.</p>
+    </header>
+
+    <main>
+        <section id="authors">
+            <h2>Authors</h2>
+            <ul>
+                <li><p><a href="https://github.com/HiraDuong">@HiraDuong</a></p></li>
+                <li><p><a href="https://github.com/haruhikawaii2k1">@haruhikawaii2k1</a></p></li>
+            </ul>
+        </section>
+
+        <section id="table-of-contents">
+            <h2>Table of Contents</h2>
+            <ul>
+                <li><a href="#introduction">Introduction</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#installation">Installation</a></li>
+                <li><a href="#usage">Usage</a></li>
+                <li><a href="#configuration">Configuration</a></li>
+                <li><a href="#acknowledgements">Acknowledgements</a></li>
+            </ul>
+        </section>
+
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>[Provide a brief introduction about the project.]</p>
+        </section>
+
+        <section id="features">
+            <h2>Features</h2>
+            <ul>
+                <li>Automatic check-in for Hoyolab games.</li>
+                <li>Supports Honkai Impact 3, Genshin Impact, and Honkai Star Rail.</li>
+            </ul>
+        </section>
+
+        <section id="installation">
+            <h2>Installation</h2>
+            <ol>
+                <li>Clone the repository:
+                    <div class="sourceCode">
+                        <pre><code>git clone https://github.com/HiraDuong/hoyolab-auto-daily.git</code></pre>
+                    </div>
+                </li>
+                <li>Navigate to the project directory:
+                    <div class="sourceCode">
+                        <pre><code>cd hoyolab-auto-daily</code></pre>
+                    </div>
+                </li>
+                <li>Install the dependencies:
+                    <div class="sourceCode">
+                        <pre><code>npm install</code></pre>
+                    </div>
+                </li>
+                <li>Create a <code>.env</code> file and add your configuration settings:
+                    <pre class="env"><code>MONGO_URI=your_mongodb_uri
+PORT=5000</code></pre>
+                    <p>If you don’t know how to get your <code>your_mongodb_uri</code>, see the <a href="#configuration">Configuration</a></p>
+                </li>
+            </ol>
+        </section>
+
+        <section id="usage">
+            <h2>Usage</h2>
+            <ol>
+                <li>Run the project: <code>npm start</code></li>
+                <li>Access the application using your VPS IP or localhost with port 5000. For example:
+                    <ul>
+                        <li><strong>For VPS (Virtual Private Server):</strong> <code>&lt;VPS_IP_ADDRESS&gt;:5000</code></li>
+                        <li><strong>For Localhost:</strong> <code>localhost:5000</code></li>
+                    </ul>
+                </li>
+                <li>Add an account:
+                    <p>Go to <code>localhost:5000</code> you will see this UI</p>
+                    <figure>
+                        <img src="../usage/home.png" alt="Add Account">
+                        <figcaption>Add Account</figcaption>
+                    </figure>
+                </li>
+                <li>Add, update or delete a new game:
+                    <p>Go to <code>localhost:5000/game</code> you will see this UI</p>
+                    <figure>
+                        <img src="../usage/listgame.png" alt="List Game">
+                        <figcaption>List Game</figcaption>
+                    </figure>
+                    <figure>
+                        <img src="../usage/addgame.png" alt="Add Game">
+                        <figcaption>Add Game</figcaption>
+                    </figure>
+                </li>
+                <li>Update or Delete an account:
+                    <p>Go to <code>localhost:5000/account</code> you will see this UI</p>
+                    <figure>
+                        <img src="../usage/account.png" alt="Account">
+                        <figcaption>Account</figcaption>
+                    </figure>
+                </li>
+            </ol>
+        </section>
+
+        <section id="configuration">
+            <h2>Configuration</h2>
+            <ul>
+                <li>Schedule check-in time:
+                    <figure>
+                        <img src="../usage/schedule.png" alt="Schedule Check-in">
+                        <figcaption>Schedule Check-in</figcaption>
+                    </figure>
+                </li>
+                <li>Schedule delete the log time:
+                    <figure>
+                        <img src="../usage/delete_log_schedule.png" alt="Schedule Delete Log">
+                        <figcaption>Schedule Delete Log</figcaption>
+                    </figure>
+                </li>
+                <li>Get your MongoDB URI here: <a href="https://www.mongodb.com/docs/atlas/getting-started/">Get Started with Atlas - MongoDB Atlas</a></li>
+            </ul>
+        </section>
+
+        <section id="acknowledgements">
+            <h2>Acknowledgements</h2>
+            <ul>
+                <li>Special thanks to Hoyolab and the developers of the supported games.</li>
+                <li>Thanks to the open-source community for their contributions and support.</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Hoyolab AutoDaily. All rights reserved.</p>
+    </footer>
+</body>
+</html>

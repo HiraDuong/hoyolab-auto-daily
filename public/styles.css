@@ -2,7 +2,7 @@
 
 /* Thiết lập font và padding cho phần form */
 body {
-        font-family: Arial, sans-serif;
+        font-family: sans-serif;
         padding: 20px;
         width: 100vw;
         height: 100vh;
@@ -52,6 +52,9 @@ input[type='checkbox'] {
 /* Canh lề cho nút submit */
 button {
         margin-top: 10px;
+        padding: 10px 20px;
+        cursor: pointer;
+        border-radius: 5px;
 }
 
 .list-group-item {
@@ -76,7 +79,7 @@ button[type='submit'] {
 
 /* Hiệu ứng khi rê chuột vào nút submit */
 button[type='submit']:hover {
-        background-color: #45a069;
+        background-color: #00ffae;
 }
 
 button[type='button'] {
@@ -87,8 +90,17 @@ button[type='button'] {
         cursor: pointer;
 }
 button[type='button']:hover {
-        background-color: #0b34da;
+        background-color: #0033ff;
 }
+
+textarea {
+        width: 100%;
+        height: 100px;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+}
+
 /* Thiết lập style cho input và label */
 input[type='text'],
 input[type='checkbox'],
